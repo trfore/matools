@@ -1,0 +1,34 @@
+Package: matools
+Type: Package
+Title: Mini Analysis Toolkit for R
+Version: 1.0.0
+Author: c(person("Taylor", "Fore", role = c("aut", "cre"), email = "trfore@users.noreply.github.com",
+           comment = c(ORCID = "0000-0002-8144-613X")))
+Maintainer: The package maintainer <trfore@users.noreply.github.com>
+Description: A toolkit for analyzing electrophysiology data - transform (.asc) files exported
+    from Mini Analysis (Synaptosoft) into R data objects; calculate and plot common metrics
+    used in neuroscience.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: false
+RoxygenNote: 7.0.2
+Depends:
+    R (>= 3.2.0)
+Imports:
+    dplyr,
+    ggplot2,
+    grDevices,
+    Hmisc,
+    lifecycle,
+    magrittr,
+    plyr,
+    RColorBrewer,
+    readr,
+    rlang,
+    rstudioapi,
+    stringr,
+    tibble,
+    tidyr
+Suggests:
+    testthat (>= 2.0.0),
+    usethis (>= 2.0.0)
