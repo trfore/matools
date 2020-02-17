@@ -1,0 +1,5 @@
+file_name,experiment_id,general_notes,total_sweeps,sweep_duration_sec,event_threshold,first_stim,num_of_stim,stim_isi,condition_1_name,condition_1_start,condition_1_end,condition_2_name,condition_2_start,condition_2_end,condition_3_name,condition_3_start,condition_3_end,condition_4_name,condition_4_start,condition_4_end,condition_5_name,condition_5_start,condition_5_end,condition_6_start,condition_6_end
+#example,exp_typeA,,100,5,1,100.15,2,40,control,1,10,drug1,15,20,drug2,25,30,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+cell1,exp_typeB,renamed from 16729003_MA,199,1,0,415.5,3,10,control,1,30,muscarine,35,64,atropine,70,99,GABAzine,125,154,NBQX,170,199,NULL,NULL
+cell2,exp_typeC,renamed from 17727001_MA ,281,5,1,478.3,2,40,control,29,58,muscarine,101,130,atropine,151,180,NBQX,251,280,NULL,NULL,,NULL,
+cell3,exp_typeC,,265,5,1,478.3,2,40,control,29,58,muscarine,101,130,atropine,171,200,NBQX,236,265,NULL,NULL,,NULL,
