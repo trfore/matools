@@ -1,0 +1,172 @@
+---
+title: "Example Workflow: Evoked Postsynaptic Potentials (or Currents)"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Pre-processing: Experiment Parameters
+- For convenient batch processing, you can store experiment parameters (e.g. sweep/trial number of a agonist) in a csv file. To generate a blank template, use `create_parameter_template()`.
+```{r, eval=FALSE}
+matools::create_parameter_template()
+```
+
+## Data Processing
+- First, load the package and example data.
+```{r, results = FALSE}
+library(matools)
+
+example_data <- system.file("extdata/demo_data",
+  package = "matools",
+  mustWork = TRUE
+)
+
+example_parameters <- system.file("extdata/demo_data",
+  "demo_data_project_parameters.csv",
+  package = "matools",
+  mustWork = TRUE
+)
+```
+
+- This package works best when parameters and variables are stored within a common environment and easily referenced by sequential functions. To generate a `matools_env`, run `set_pkg_environment()`. To set parameter values run the following:
+```{r, warning=FALSE}
+set_pkg_environment(force_new = TRUE)
+
+# load the example data and parameters
+set_data_directory(example_data)
+import_experiment_parameters(example_parameters)
+
+# check for missing .asc files or experiment parameters
+import_check_missing_info(
+  dir_filenames = matools_env$files_in_folder,
+  parameters = matools_env$parameters,
+  skip_prompt = TRUE
+)
+```
+
+- Note: For this example we'll only process the data for `"cell2"`, in your personal workflows, you can separate different experiments by creating distinct data folders and experiment parameter (.csv) files.
+```{r}
+# example only: only process relevant data
+matools_env$files_to_process <- "cell2"
+```
+
+- Next, sequentially load each (.asc) file as a tibble; calculate additional values; and aggregate each modified tibble into collection called `data_collection`.
+```{r}
+for (filename in matools_env$files_to_process) {
+  message(paste("Processing File:", filename))
+
+  data <- asc_to_tibble(
+    file_path = file.path(matools_env$directory_data, paste(filename, ".ASC", sep = ""))
+  )
+  set_experiment_parameters(matools_env$parameters, filename)
+
+  # modify the data frame
+  calculate_stimulus_times(
+    stimulus_time_first = matools_env$stimulus_time_of_first,
+    stimulus_count = matools_env$stimulus_count,
+    stimulus_isi = matools_env$stimulus_isi
+  )
+
+  data <- add_sweep_number_to_rows(
+    df = data,
+    sweep_duration = matools_env$sweep_duration_sec,
+    sweep_count = matools_env$sweep_total,
+    time_ref = "rec_time_ms"
+  )
+
+  data <- insert_rows_for_missing_sweeps(
+    df = data,
+    sweep_count = matools_env$sweep_total
+  )
+
+  data <- standardize_event_time(
+    df = data,
+    sweep_duration = matools_env$sweep_duration_sec,
+    time_ref = "rec_time_ms"
+  )
+
+  data <- add_stimulus_index(
+    df = data,
+    time_of_stim = matools_env$time_of_stimuli,
+    isi = matools_env$stimulus_isi,
+    sweep_count = matools_env$sweep_total,
+    recovery_stim = matools_env$stimulus_time_of_recovery
+  )
+
+  data <- add_event_index(data)
+
+  user_parameters <- dplyr::tibble(
+    condition_start = matools_env$condition_starts,
+    condition_end = matools_env$condition_ends,
+    condition = matools_env$condition_names
+  )
+  data <- add_condition_tag(
+    df = data,
+    parameters = user_parameters
+  )
+
+  data <- add_event_jitter(
+    df = data,
+    to_rise = FALSE
+  )
+
+  data <- add_normalized_amplitude(
+    df = data,
+    normalize_condition = "control",
+    normalize_stimulus = 1
+  )
+
+  data <- add_ppr(
+    df = data,
+    column_ref = "amplitude_normalized"
+  )
+
+  # aggregate data for plotting
+  if (!exists("data_collection")) {
+    data_collection <-
+      tibble::tibble(
+        cell_id = filename,
+        experiment_id = matools_env$experiment_id,
+        data_events = list(data)
+      )
+  } else {
+    data_collection <-
+      tibble::add_row(
+        data_collection,
+        cell_id = filename,
+        experiment_id = matools_env$experiment_id,
+        data_events = list(data)
+      )
+  }
+}
+```
+
+## Data Plotting
+- Now, let's extract a single experiment from the aggregated data, `"cell2"`, and only look the first postsynaptic current after the experimental stimulus, i.e. `filter(stimulus == 1)`.
+```{r}
+library(magrittr, include.only = "%>%")
+
+plot_data <- data_collection %>%
+  dplyr::filter(experiment_id == "exp_typeC") %>%
+  dplyr::filter(cell_id == "cell2") %>%
+  dplyr::select("data_events") %>%
+  tidyr::unnest("data_events") %>%
+  dplyr::filter(stimulus == 1)
+```
+
+- Finally, let's plot the amplitudes for the example cell.
+```{r}
+plot_scatterplot_amplitude(
+  df = plot_data,
+  sweep_duration = 5,
+  ymax = 250,
+  y_label = "amplitude (pA)"
+)
+```
+
+## Additional References
+- This example was modified from `analysis_evoked_psp()`, which is viewable within R and Rstudio via `getAnywhere(analysis_evoked_psp())` and available on github at https://github.com/trfore/matools/blob/main/R/workflows.R
