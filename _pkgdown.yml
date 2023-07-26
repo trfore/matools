@@ -1,0 +1,19 @@
+url: www.github.com/trfore/matools
+author:
+  Taylor Fore:
+    href: "https://github.com/trfore"
+  footer:
+    roles: [cre]
+  sidebar:
+    roles: [aut]
+template:
+  bootstrap: 5
+  bootswatch: cosmo
+  theme: github-light
+navbar:
+  structure:
+    left:  [intro, reference, articles, tutorials, news]
+    right: [search, github]
+home:
+  sidebar:
+    structure: [links, license, authors]

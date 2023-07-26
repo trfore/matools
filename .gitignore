@@ -35,3 +35,4 @@ vignettes/*.pdf
 # General files
 .DS_Store
 *.code-workspace
+docs
