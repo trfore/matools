@@ -23,9 +23,6 @@ test_that("plot_event_avg() plots sem and sd", {
       ymax = 3
     )
 
-  # TODO remove this old expression
-  # expect_equal(simple_plot_sem[["layers"]][[5]][["mapping"]][["ymax"]][[2]][[3]][[3]], "sem")
-  # update to pass checks
   expect_equal(rlang::quo_get_expr(simple_plot_sem[["layers"]][[5]][["mapping"]][["ymax"]])[[3]][[3]], "sem")
 
   simple_plot_sd <-
@@ -42,9 +39,6 @@ test_that("plot_event_avg() plots sem and sd", {
       ymax = 3
     )
 
-  # TODO remove this old expression
-  # expect_equal(simple_plot_sd[["layers"]][[5]][["mapping"]][["ymax"]][[2]][[3]][[3]], "sd")
-  # update to pass checks
   expect_equal(rlang::quo_get_expr(simple_plot_sd[["layers"]][[5]][["mapping"]][["ymax"]])[[3]][[3]], "sd")
 })
 

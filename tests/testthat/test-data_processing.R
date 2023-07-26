@@ -473,16 +473,6 @@ test_that("add_stimulus_index discovers missing sweeps and runs insert_rows_for_
   )
 
   expect_equal(tbl_output[["sweep"]], expected_sweeps)
-
-  # TODO how to test trys and stops
-  # tbl_output <- add_stimulus_index(
-  #   df = simple_tbl,
-  #   time_of_stim = c(400),
-  #   isi = 10,
-  #   sweep_count = 4,
-  #   recovery_stim = NULL,
-  #   add_missing = FALSE
-  # )
 })
 
 test_that("add_stimulus_index discovers missing time_ms and tries standardize_event_time()", {
@@ -1047,13 +1037,4 @@ test_that("standardize_event_time accepts and returns tibbles", {
     sweep_duration = 1,
     time_ref = "not_a_column"
   ))
-
-  no_sweep_tbl <- tibble::tibble(
-    rec_time_ms = c(400, 4400)
-  )
-  # TODO this test does not throw an error when the try call is used
-  # expect_error(standardize_event_time(no_sweep_tbl,
-  #   sweep_duration = 1,
-  #   time_ref = "rec_time_ms"
-  # ))
 })
