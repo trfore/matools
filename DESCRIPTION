@@ -2,16 +2,18 @@ Package: matools
 Type: Package
 Title: Mini Analysis Toolkit for R
 Version: 1.0.0
-Author: c(person("Taylor", "Fore", role = c("aut", "cre"), email = "trfore@users.noreply.github.com",
+Author: c(person("Taylor", "Fore", role = c("aut", "cre"), email = "taylor.r.fore@gmail.com",
            comment = c(ORCID = "0000-0002-8144-613X")))
-Maintainer: The package maintainer <trfore@users.noreply.github.com>
+Maintainer: The package maintainer <taylor.r.fore@gmail.com>
 Description: A toolkit for analyzing electrophysiology data - transform (.asc) files exported
     from Mini Analysis (Synaptosoft) into R data objects; calculate and plot common metrics
     used in neuroscience.
 License: MIT + file LICENSE
+URL: https://github.com/trfore/matools
+BugReports: https://github.com/trfore/matools/issues
 Encoding: UTF-8
 LazyData: false
-RoxygenNote: 7.0.2
+RoxygenNote: 7.2.3
 Depends:
     R (>= 3.2.0)
 Imports:
@@ -32,3 +34,4 @@ Imports:
 Suggests:
     testthat (>= 2.0.0),
     usethis (>= 2.0.0)
+Config/Needs/website: rmarkdown
