@@ -1,0 +1,11 @@
+pandoc: 2.19.2
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  workflow_evoked_ap: workflow_evoked_ap.html
+  workflow_evoked_psp: workflow_evoked_psp.html
+last_built: 2023-07-27T17:16Z
+urls:
+  reference: https://trfore.github.io/matools/reference
+  article: https://trfore.github.io/matools/articles
+
