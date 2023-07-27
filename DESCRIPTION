@@ -9,7 +9,7 @@ Description: A toolkit for analyzing electrophysiology data - transform (.asc) f
     from Mini Analysis (Synaptosoft) into R data objects; calculate and plot common metrics
     used in neuroscience.
 License: MIT + file LICENSE
-URL: https://github.com/trfore/matools
+URL: https://github.com/trfore/matools, https://trfore.github.io/matools/
 BugReports: https://github.com/trfore/matools/issues
 Encoding: UTF-8
 LazyData: false
