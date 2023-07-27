@@ -93,7 +93,7 @@
 </ul>
 </li>
 <li><p>This analysis package is also expandable to automatically check and run such analysis when a new data file or meta file entry is added to a public Google Sheets file via the R Package <code>googlesheets</code>. See <a href="https://www.github.com/trfore/chat-project" class="external-link">github.com/trfore/chat-project</a> for documentation and a working example; or the help page for <code><a href="reference/import_experiment_parameters.html">import_experiment_parameters()</a></code>.</p></li>
-<li><p>Additionally, the graphs (.pdf) used in the publication Fore et al. 2020 (DOI: ) can be generated and modified to fit your own analysis. See <a href="https://www.github.com/trfore/chat-project" class="external-link">github.com/trfore/chat-project</a> for documentation on generating and modifying such figures.</p></li>
+<li><p>Additionally, the graphs (.pdf) used in the publication Fore et al. 2020 (DOI: <a href="https://doi.org/10.1523/JNEUROSCI.2148-19.2020" class="external-link uri">https://doi.org/10.1523/JNEUROSCI.2148-19.2020</a>) can be generated and modified to fit your own analysis. See <a href="https://www.github.com/trfore/chat-project" class="external-link">github.com/trfore/chat-project</a> for documentation on generating and modifying such figures.</p></li>
 </ol>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -164,7 +164,7 @@
 <span><span class="va">plot_data</span> <span class="op">&lt;-</span> <span class="va">test_df</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">stimulus</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/plot_scatterplot_amplitude.html">plot_scatterplot_amplitude</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">plot_data</span>, sweep_duration <span class="op">=</span> <span class="fl">5</span>, ymax <span class="op">=</span> <span class="fl">250</span><span class="op">)</span></span></code></pre></div>
 <ul>
-<li>More complex data processing workflows are provided in <code>R/workflows.R</code> and are viewable within R by calling <code><a href="https://rdrr.io/r/utils/getAnywhere.html" class="external-link">getAnywhere()</a></code> on <code><a href="reference/analysis_evoked_ap.html">analysis_evoked_ap()</a></code> or <code><a href="reference/analysis_evoked_psp.html">analysis_evoked_psp()</a></code>.</li>
+<li>More complex data processing workflows are provided in <code>R/workflows.R</code> and are viewable within R by calling <code><a href="https://rdrr.io/r/utils/getAnywhere.html" class="external-link">getAnywhere()</a></code> on <code><a href="reference/analysis_evoked_ap.html">analysis_evoked_ap()</a></code> or <code><a href="reference/analysis_evoked_psp.html">analysis_evoked_psp()</a></code>. Alternatively, read the package articles at <a href="https://trfore.github.io/matools/articles/" class="uri">https://trfore.github.io/matools/articles/</a>.</li>
 <li>Additionally, see <a href="https://www.github.com/trfore/chat-project" class="external-link">github.com/trfore/chat-project</a> for full analysis workflows.</li>
 </ul>
 </div>
