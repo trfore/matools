@@ -22,7 +22,7 @@ This package was created to solve the following problems:
 
 4. This analysis package is also expandable to automatically check and run such analysis when a new data file or meta file entry is added to a public Google Sheets file via the R Package `googlesheets`. See [github.com/trfore/chat-project] for documentation and a working example; or the help page for `import_experiment_parameters()`.
 
-5. Additionally, the graphs (.pdf) used in the publication Fore et al. 2020 (DOI: ) can be generated and modified to fit your own analysis. See [github.com/trfore/chat-project] for documentation on generating and modifying such figures.
+5. Additionally, the graphs (.pdf) used in the publication Fore et al. 2020 (DOI: https://doi.org/10.1523/JNEUROSCI.2148-19.2020) can be generated and modified to fit your own analysis. See [github.com/trfore/chat-project] for documentation on generating and modifying such figures.
 
 ## Installation
 
@@ -93,7 +93,7 @@ plot_data <- test_df %>% dplyr::filter(stimulus == 1)
 plot_scatterplot_amplitude(df = plot_data, sweep_duration = 5, ymax = 250)
 ```
 
-- More complex data processing workflows are provided in `R/workflows.R` and are viewable within R by calling `getAnywhere()` on `analysis_evoked_ap()` or `analysis_evoked_psp()`.
+- More complex data processing workflows are provided in `R/workflows.R` and are viewable within R by calling `getAnywhere()` on `analysis_evoked_ap()` or `analysis_evoked_psp()`. Alternatively, read the package articles at https://trfore.github.io/matools/articles/.
 - Additionally, see [github.com/trfore/chat-project] for full analysis workflows.
 
 [github.com/trfore/chat-project]: https://www.github.com/trfore/chat-project
